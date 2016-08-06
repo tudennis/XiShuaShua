@@ -14,33 +14,35 @@
 
 #include <iostream>
 #include <string>
+#include <memory>       // std::shared_ptr
 
 namespace XiShuaShua {
     
     class Factory {
         
     private:
-        OrderedMatrix* m_orderedMatrix;
+        std::shared_ptr<OrderedMatrix> m_orderedMatrix;
         
     public:
         // Constructor
-        Factory() : m_orderedMatrix(new OrderedMatrix())
+        Factory() : m_orderedMatrix(std::shared_ptr<OrderedMatrix>(new OrderedMatrix()))
         {
         };
         
         // Destructor
         ~Factory()
         {
-            delete m_orderedMatrix;
+            // delete m_orderedMatrix;
         };
         
-        Problem* getProblemSolver(const std::string& name)
+        std::shared_ptr<Problem> getProblemSolver(const std::string& name)
         {
-            if (name == "orderedmatrix"){
-                return static_cast<Problem *>(m_orderedMatrix);
+            if (name == "orderedmatrix")
+            {
+                return static_cast< std::shared_ptr<Problem> >(m_orderedMatrix);
             }
-            else{
-                std::cout << "Unsupported problem name " << name << std::endl;
+            else
+            {
                 return nullptr;
             }
         };

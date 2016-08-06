@@ -10,6 +10,7 @@
 #include "factory.hpp"
 
 #include <iostream>
+#include <memory>
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -17,9 +18,29 @@ int main(int argc, const char * argv[]) {
     
     Factory f;
     
-    Problem* problem = f.getProblemSolver("orderedmatrix");
+    std::cout << "Please enter problem name" << std::endl;
     
-    problem->solve();
+    std::string problemName;
+    
+    std::cin >> problemName;
+    
+    try
+    {
+        std::shared_ptr<Problem> problem = f.getProblemSolver(problemName);
+        
+        if (problem != nullptr)
+        {
+            problem->solve();
+        }
+        else
+        {
+            std::cout << "Unsupported problem " << problemName << std::endl;
+        }
+        
+    } catch (...)
+    {
+        std::cout << "Exception during problem solving" << std::endl;
+    }
     
     return 0;
 }
