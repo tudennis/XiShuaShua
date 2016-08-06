@@ -6,10 +6,20 @@
 //  Copyright © 2016 Yijian. All rights reserved.
 //
 
+#include "problem.hpp"
+#include "factory.hpp"
+
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World !\n";
+    using namespace XiShuaShua;
+    
+    Factory f;
+    
+    Problem* problem = f.getProblemSolver("orderedmatrix");
+    
+    problem->solve();
+    
     return 0;
 }
