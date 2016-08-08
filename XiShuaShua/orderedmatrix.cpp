@@ -15,7 +15,10 @@
 namespace XiShuaShua {
 
     namespace {
-        
+        void nonDescendingOrder(const std::vector< std::vector< int > >& matrix)
+        {
+            
+        }
     } // anonymous
     
     void
@@ -40,6 +43,8 @@ namespace XiShuaShua {
         m.push_back(v);
         
         printMatrix(m);
+        
+        nonDescendingOrder(m);
     }
     
     
