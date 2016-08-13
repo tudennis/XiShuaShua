@@ -11,6 +11,7 @@
 
 #include "problem.hpp"
 #include "orderedmatrix.hpp"
+#include "bitoperation.hpp"
 
 #include <iostream>
 #include <string>
@@ -22,17 +23,18 @@ namespace XiShuaShua {
         
     private:
         std::shared_ptr<OrderedMatrix> m_orderedMatrix;
+        std::shared_ptr<BitOperation> m_bitOperation;
         
     public:
         // Constructor
-        Factory() : m_orderedMatrix(std::shared_ptr<OrderedMatrix>(new OrderedMatrix()))
+        Factory() : m_orderedMatrix(std::shared_ptr<OrderedMatrix>(new OrderedMatrix())),
+                    m_bitOperation(std::shared_ptr<BitOperation>(new BitOperation()))
         {
         };
         
         // Destructor
         ~Factory()
         {
-            // delete m_orderedMatrix;
         };
         
         std::shared_ptr<Problem> getProblemSolver(const std::string& name)
@@ -40,6 +42,10 @@ namespace XiShuaShua {
             if (name == "orderedmatrix")
             {
                 return static_cast< std::shared_ptr<Problem> >(m_orderedMatrix);
+            }
+            else if (name == "bitoperation")
+            {
+                return static_cast< std::shared_ptr<Problem> >(m_bitOperation);
             }
             else
             {
